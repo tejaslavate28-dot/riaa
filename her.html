@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Favorite Person, Riaaa ❤️ | From Tejas</title>
+    
+    <!-- Tailwind CSS for robust modern responsive layouts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP for smooth entrance, stagger, and state transitions -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <!-- Three.js for rendering the interactive 3D metallic floating hearts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Canvas Confetti for the spectacular final celebration -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <!-- Google Fonts for elite, warm editorial typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Base Configuration */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0c0a09;
+            overflow-x: hidden;
+            user-select: none;
+        }
+        
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .font-signature {
+            font-family: 'Caveat', cursive;
+        }
+
+        /* 2025 Premium Animated Aurora Background */
+        .aurora-bg {
+            position: fixed;
+            inset: 0;
+            background-color: #0c0a09;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .aurora-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.3;
+            mix-blend-mode: screen;
+            will-change: transform;
+        }
+
+        .blob-pink {
+            background: radial-gradient(circle, #f43f5e 0%, transparent 70%);
+            width: 500px;
+            height: 500px;
+            top: -10%;
+            left: -10%;
+            animation: floatBlob1 25s infinite alternate ease-in-out;
+        }
+
+        .blob-purple {
+            background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
+            width: 600px;
+            height: 600px;
+            bottom: -15%;
+            right: -10%;
+            animation: floatBlob2 30s infinite alternate ease-in-out;
+        }
+
+        .blob-indigo {
+            background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+            width: 550px;
+            height: 550px;
+            top: 35%;
+            left: 20%;
+            animation: floatBlob3 35s infinite alternate ease-in-out;
+        }
+
+        .blob-gold {
+            background: radial-gradient(circle, #f59e0b 0%, transparent 70%);
+            width: 450px;
+            height: 450px;
+            bottom: 20%;
+            right: 30%;
+            animation: floatBlob1 28s infinite alternate-reverse ease-in-out;
+        }
+
+        @keyframes floatBlob1 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(140px, 110px) scale(1.2); }
+        }
+        @keyframes floatBlob2 {
+            0% { transform: translate(0, 0) scale(1.1); }
+            100% { transform: translate(-120px, -150px) scale(0.95); }
+        }
+        @keyframes floatBlob3 {
+            0% { transform: translate(0, 0) scale(0.95); }
+            100% { transform: translate(-60px, 120px) scale(1.15); }
+        }
+
+        /* Glassmorphism Styling */
+        .glass-card {
+            background: rgba(18, 15, 14, 0.45);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.65), 
+                        inset 0 1px 1px rgba(255, 255, 255, 0.04);
+            will-change: transform, opacity;
+        }
+
+        /* Beating Glowing Hearts */
+        .animate-heartbeat {
+            animation: heartbeat 1.5s infinite ease-in-out;
+            display: inline-block;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(244,63,94,0.5)); }
+            20% { transform: scale(1.18); filter: drop-shadow(0 0 25px rgba(244,63,94,0.85)); }
+            40% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(244,63,94,0.5)); }
+            60% { transform: scale(1.15); filter: drop-shadow(0 0 25px rgba(244,63,94,0.85)); }
+            80% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(244,63,94,0.5)); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(244,63,94,0.5)); }
+        }
+
+        /* Premium Luxury Buttons */
+        .btn-luxury {
+            background: linear-gradient(135deg, #f43f5e 0%, #ec4899 50%, #8b5cf6 100%);
+            background-size: 200% 200%;
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .btn-luxury:hover {
+            background-position: right center;
+            box-shadow: 0 0 35px rgba(244, 63, 94, 0.55);
+            transform: scale(1.04) translateY(-2px);
+        }
+
+        /* Text Color Luxury Gradients */
+        .text-gradient-luxury {
+            background: linear-gradient(135deg, #ffffff 15%, #ffd1dc 55%, #f472b6 95%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Equalizer Animation Bars */
+        .eq-bar {
+            width: 3px;
+            background-color: #f43f5e;
+            animation: bounce-eq 0.8s ease-in-out infinite alternate;
+        }
+        @keyframes bounce-eq {
+            0% { height: 4px; }
+            100% { height: 20px; }
+        }
+
+        /* Custom Interactive Fluid Cursor */
+        #custom-cursor {
+            width: 18px;
+            height: 18px;
+            background: rgba(244, 63, 94, 0.35);
+            border: 2px solid #ec4899;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+            box-shadow: 0 0 15px rgba(244, 63, 94, 0.5);
+            display: none;
+        }
+        @media (pointer: fine) {
+            #custom-cursor {
+                display: block;
+            }
+            body {
+                cursor: none;
+            }
+            a, button, [role="button"] {
+                cursor: none;
+            }
+        }
+
+        /* Small hearts generated on click */
+        .cursor-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 99998;
+            font-size: 14px;
+            user-select: none;
+            will-change: transform, opacity;
+        }
+
+        /* Hidden Easter Egg Hearts */
+        .easter-egg-heart {
+            animation: floatEgg 3s infinite ease-in-out;
+            cursor: none !important;
+            will-change: transform;
+        }
+        @keyframes floatEgg {
+            0% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-8px) scale(1.1); filter: drop-shadow(0 0 15px rgba(244,63,94,0.8)); }
+            100% { transform: translateY(0px) scale(1); }
+        }
+    </style>
+</head>
+<body class="text-white relative min-h-screen flex items-center justify-center py-12 px-4 selection:bg-pink-500/50 overflow-x-hidden">
+
+    <!-- Interactive Custom Cursor -->
+    <div id="custom-cursor"></div>
+
+    <!-- Loading Screen Overlay with Spinning Particle Heart -->
+    <div id="loader" class="fixed inset-0 bg-[#0c0a09] z-[99999] flex flex-col justify-center items-center">
+        <div class="relative flex flex-col items-center">
+            <div id="loader-heart" class="text-7xl animate-heartbeat mb-8 text-rose-500 transform origin-center">❤️</div>
+            <div class="text-white font-serif text-xl md:text-2xl tracking-wider text-center px-6 max-w-lg mb-3">
+                Hey Riaaa...
+            </div>
+            <div class="text-pink-300 font-sans text-sm tracking-widest text-center opacity-85 uppercase">
+                Someone made something just for you ❤️
+            </div>
+            
+            <!-- Progress indicator timeline -->
+            <div class="w-56 h-1 bg-white/10 rounded-full mt-8 overflow-hidden relative">
+                <div id="loader-progress" class="absolute top-0 left-0 h-full w-0 bg-gradient-to-r from-pink-500 to-indigo-500 rounded-full"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Layer Systems -->
+    <div class="aurora-bg">
+        <div class="aurora-blob blob-pink"></div>
+        <div class="aurora-blob blob-purple"></div>
+        <div class="aurora-blob blob-indigo"></div>
+        <div class="aurora-blob blob-gold"></div>
+    </div>
+    
+    <!-- Three.js Canvas Container -->
+    <div id="canvas-container" class="fixed inset-0 pointer-events-none z-10 opacity-70"></div>
+
+    <!-- Blackout Overlay for cinematic confession step -->
+    <div id="finale-dimmer" class="fixed inset-0 bg-black/90 z-40 pointer-events-none opacity-0 transition-opacity duration-2000"></div>
+
+    <!-- Interactive Easter Eggs Layer -->
+    <div class="fixed inset-0 pointer-events-none z-30 select-none">
+        <button onclick="revealEgg('egg1')" class="easter-egg-heart pointer-events-auto absolute top-24 left-8 text-xl opacity-20 hover:opacity-100 transition-opacity duration-300" title="A little secret...">❤️</button>
+        <button onclick="revealEgg('egg2')" class="easter-egg-heart pointer-events-auto absolute bottom-32 left-10 text-xl opacity-20 hover:opacity-100 transition-opacity duration-300" style="animation-delay: 1s;" title="Hold me close...">💖</button>
+        <button onclick="revealEgg('egg3')" class="easter-egg-heart pointer-events-auto absolute top-1/3 right-12 text-xl opacity-20 hover:opacity-100 transition-opacity duration-300" style="animation-delay: 2s;" title="A star for you...">✨</button>
+    </div>
+
+    <!-- Fixed Global Progress Bar -->
+    <div class="fixed top-0 left-0 w-full h-1.5 bg-white/5 z-50">
+        <div id="progress-bar" class="h-full bg-gradient-to-r from-pink-500 via-rose-500 to-indigo-500 rounded-r transition-all duration-300" style="width: 12.5%;"></div>
+    </div>
+
+    <!-- Ambient Music Controls -->
+    <div class="fixed top-6 right-6 z-50 flex items-center gap-3">
+        <button id="music-btn" onclick="toggleAudio()" class="glass-card hover:bg-white/10 text-white rounded-full p-3 flex items-center justify-center transition-all duration-300 active:scale-95" aria-label="Toggle Music">
+            <svg id="play-icon" class="w-6 h-6 text-pink-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+            </svg>
+            <svg id="pause-icon" class="w-6 h-6 text-pink-400 hidden" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+            </svg>
+        </button>
+        <div id="equalizer" class="flex gap-1 items-end h-5 w-6 hidden">
+            <div class="eq-bar" style="animation-delay: 0.1s"></div>
+            <div class="eq-bar" style="animation-delay: 0.3s"></div>
+            <div class="eq-bar" style="animation-delay: 0.5s"></div>
+        </div>
+        <!-- Background Audio (Cozy Romantic acoustic theme) -->
+        <audio id="bg-audio" loop preload="auto">
+            <source src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Dynamic Storytelling Elements -->
+    <main class="relative z-30 w-full max-w-2xl mx-auto flex flex-col justify-center items-center py-6">
+
+        <!-- STEP 1: The Sweet Request -->
+        <div class="step w-full" data-step="1">
+            <div class="glass-card rounded-[2.5rem] p-8 md:p-14 text-center shadow-rose-950/20 shadow-2xl relative overflow-hidden">
+                <div class="step-child text-6xl mb-8 animate-heartbeat">❤️</div>
+                <h1 class="step-child font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6 leading-tight text-gradient-luxury font-bold">
+                    Hi Riaaa... 😊
+                </h1>
+                <p class="step-child text-zinc-300 leading-relaxed text-base md:text-lg mb-8 max-w-lg mx-auto font-light">
+                    Before you continue...<br><br>
+                    I have a tiny request.<br><br>
+                    Promise me you'll smile at least once while exploring this website. <br>
+                    Deal?
+                </p>
+                <div class="step-child flex justify-center gap-4">
+                    <button onclick="acceptPromise()" class="btn-luxury px-8 py-4 rounded-full font-semibold text-base shadow-lg active:scale-95 duration-150 text-white tracking-wide">
+                        😊 I Promise
+                    </button>
+                    <button onclick="acceptPromise()" class="glass-card hover:bg-white/5 border border-white/10 px-8 py-4 rounded-full font-semibold text-base shadow-lg active:scale-95 duration-150 text-zinc-300 hover:text-white tracking-wide">
+                        😅 I'll Try
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 2: The Playful Quiz -->
+        <div class="step w-full hidden" data-step="2">
+            <div class="glass-card rounded-[2.5rem] p-8 md:p-14 text-center relative overflow-hidden">
+                <div class="step-child text-6xl mb-8">❤️</div>
+                <h1 class="step-child font-serif text-4xl md:text-5xl tracking-tight mb-6 leading-tight text-gradient-luxury font-bold">
+                    Let's Play A Tiny Game ❤️
+                </h1>
+                <p class="step-child text-zinc-300 leading-relaxed text-base md:text-lg mb-8 max-w-xl mx-auto font-light">
+                    Who do you think made this website?
+                </p>
+                
+                <div class="step-child flex flex-col sm:flex-row justify-center gap-4 mb-6">
+                    <button onclick="gameAnswer('wrong1')" class="glass-card hover:bg-white/5 border border-white/10 px-6 py-4 rounded-full font-medium text-base text-zinc-300 hover:text-white transition-all w-full sm:w-auto">
+                        🤔 No Idea
+                    </button>
+                    <button onclick="gameAnswer('wrong2')" class="glass-card hover:bg-white/5 border border-white/10 px-6 py-4 rounded-full font-medium text-base text-zinc-300 hover:text-white transition-all w-full sm:w-auto">
+                        😎 Some Secret Admirer
+                    </button>
+                    <button onclick="gameAnswer('right')" class="btn-luxury px-8 py-4 rounded-full font-semibold text-base text-white tracking-wide w-full sm:w-auto">
+                        ❤️ Tejas
+                    </button>
+                </div>
+
+                <!-- Game dynamic response container -->
+                <div id="game-response" class="h-12 flex items-center justify-center font-serif text-xl text-pink-300 font-medium"></div>
+
+                <div id="game-next-btn" class="hidden mt-6">
+                    <button onclick="goToStep(3)" class="btn-luxury px-8 py-3.5 rounded-full font-semibold text-base text-white tracking-wide">
+                        Continue ❤️
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 3: Quick Questions (Interactive Multi-Dialogues) -->
+        <div class="step w-full hidden" data-step="3">
+            <div class="glass-card rounded-[2.5rem] p-8 md:p-12 text-center">
+                <h1 class="step-child font-serif text-4xl tracking-tight mb-8 font-bold text-gradient-luxury">
+                    Quick Questions 😄
+                </h1>
+                
+                <!-- Slide Q1 -->
+                <div id="sub-q1" class="question-slide">
+                    <p class="text-zinc-300 text-lg md:text-xl mb-8 font-light">Who smiles the cutest?</p>
+                    <div class="flex justify-center gap-4">
+                        <button onclick="answerSubQ(1, 'right')" class="btn-luxury px-8 py-3.5 rounded-full font-semibold text-base text-white">
+                            Me 😌
+                        </button>
+                        <button onclick="answerSubQ(1, 'wrong')" class="glass-card border border-white/10 px-8 py-3.5 rounded-full font-semibold text-base text-zinc-300 hover:text-white">
+                            You 😊
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Slide Q2 -->
+                <div id="sub-q2" class="question-slide hidden">
+                    <p class="text-zinc-300 text-lg md:text-xl mb-8 font-light">Who gets hungry first?</p>
+                    <div class="flex justify-center gap-4">
+                        <button onclick="answerSubQ(2, 'tejas')" class="glass-card border border-white/10 px-8 py-3.5 rounded-full font-semibold text-base text-zinc-300 hover:text-white">
+                            Tejas 🍕
+                        </button>
+                        <button onclick="answerSubQ(2, 'ria')" class="btn-luxury px-8 py-3.5 rounded-full font-semibold text-base text-white">
+                            Riaaa 🍟
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Slide Q3 -->
+                <div id="sub-q3" class="question-slide hidden">
+                    <p class="text-zinc-300 text-lg md:text-xl mb-8 font-light">Who overthinks more?</p>
+                    <div class="flex justify-center gap-4">
+                        <button onclick="answerSubQ(3, 'both')" class="btn-luxury px-8 py-3.5 rounded-full font-semibold text-base text-white">
+                            You
+                        </button>
+                        <button onclick="answerSubQ(3, 'both')" class="glass-card border border-white/10 px-8 py-3.5 rounded-full font-semibold text-base text-zinc-300 hover:text-white">
+                            Me
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Question feedback response block -->
+                <div id="questions-feedback" class="h-12 flex items-center justify-center font-serif text-xl text-pink-300 font-medium mt-6"></div>
+
+                <div id="questions-next-btn" class="hidden mt-6">
+                    <button id="q-next-action" class="btn-luxury px-8 py-3.5 rounded-full font-semibold text-base text-white tracking-wide">
+                        Next Question
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 4: Bento Grid of Love details -->
+        <div class="step w-full hidden" data-step="4">
+            <div class="glass-card rounded-[2.5rem] p-8 md:p-12 text-center">
+                <h1 class="step-child font-serif text-3xl md:text-4xl lg:text-5xl tracking-tight mb-8 font-bold text-gradient-luxury">
+                    Things I Secretly Love About You ❤️
+                </h1>
+                
+                <!-- Modern Bento Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-left mb-8">
+                    <!-- Card 1 -->
+                    <div class="step-child glass-card bg-white/[0.03] border border-white/5 p-6 rounded-2xl md:col-span-2 hover:border-pink-500/30 hover:shadow-[0_0_25px_rgba(244,63,94,0.1)] transition-all duration-300 group">
+                        <div class="text-3xl mb-3 group-hover:scale-110 duration-300 origin-left">✨</div>
+                        <h3 class="text-lg font-bold mb-1 text-white group-hover:text-pink-300 transition-colors">Your Smile</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed font-light">It lights up my entire day without you even trying.</p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="step-child glass-card bg-white/[0.03] border border-white/5 p-6 rounded-2xl md:col-span-1 hover:border-pink-500/30 hover:shadow-[0_0_25px_rgba(244,63,94,0.1)] transition-all duration-300 group">
+                        <div class="text-3xl mb-3 group-hover:scale-110 duration-300 origin-left">😊</div>
+                        <h3 class="text-lg font-bold mb-1 text-white group-hover:text-pink-300 transition-colors">Your Kindness</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed font-light">The way you care.</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="step-child glass-card bg-white/[0.03] border border-white/5 p-6 rounded-2xl md:col-span-1 hover:border-pink-500/30 hover:shadow-[0_0_25px_rgba(244,63,94,0.1)] transition-all duration-300 group">
+                        <div class="text-3xl mb-3 group-hover:scale-110 duration-300 origin-left">🌸</div>
+                        <h3 class="text-lg font-bold mb-1 text-white group-hover:text-pink-300 transition-colors">Your Little Habits</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed font-light">Those unique things only you do.</p>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="step-child glass-card bg-white/[0.03] border border-white/5 p-6 rounded-2xl md:col-span-2 hover:border-pink-500/30 hover:shadow-[0_0_25px_rgba(244,63,94,0.1)] transition-all duration-300 group">
+                        <div class="text-3xl mb-3 group-hover:scale-110 duration-300 origin-left">💖</div>
+                        <h3 class="text-lg font-bold mb-1 text-white group-hover:text-pink-300 transition-colors">Your Presence</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed font-light">The way you make ordinary moments feel incredibly special.</p>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="step-child glass-card bg-white/[0.03] border border-white/5 p-6 rounded-2xl md:col-span-2 hover:border-pink-500/30 hover:shadow-[0_0_25px_rgba(244,63,94,0.1)] transition-all duration-300 group">
+                        <div class="text-3xl mb-3 group-hover:scale-110 duration-300 origin-left">🌙</div>
+                        <h3 class="text-lg font-bold mb-1 text-white group-hover:text-pink-300 transition-colors">Our Conversations</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed font-light">Late-night chats that make everything else vanish.</p>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="step-child glass-card bg-white/[0.03] border border-white/5 p-6 rounded-2xl md:col-span-1 hover:border-pink-500/30 hover:shadow-[0_0_25px_rgba(244,63,94,0.1)] transition-all duration-300 group">
+                        <div class="text-3xl mb-3 group-hover:scale-110 duration-300 origin-left">🌞</div>
+                        <h3 class="text-lg font-bold mb-1 text-white group-hover:text-pink-300 transition-colors">The Happiness</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed font-light">That warmth you always bring.</p>
+                    </div>
+                </div>
+
+                <button onclick="goToStep(5)" class="step-child btn-luxury px-10 py-4 rounded-full font-semibold text-lg shadow-lg active:scale-95 duration-150 text-white tracking-wide">
+                    Keep Going ❤️
+                </button>
+            </div>
+        </div>
+
+        <!-- STEP 5: Imagine This... (Polaroid Reveal) -->
+        <div class="step w-full hidden" data-step="5">
+            <div class="glass-card rounded-[2.5rem] p-8 md:p-12 text-center">
+                <h1 class="step-child font-serif text-3xl md:text-4xl tracking-tight mb-8 font-bold text-gradient-luxury">
+                    Imagine This...
+                </h1>
+                
+                <!-- Premium Tilt-interactive Polaroid -->
+                <div id="polaroid" class="step-child bg-white text-zinc-900 p-4 pb-6 rounded shadow-2xl max-w-[380px] mx-auto border border-zinc-300/50 mb-8 transform rotate-1 select-none pointer-events-auto origin-center">
+                    <div class="aspect-square w-full overflow-hidden rounded bg-zinc-100 relative shadow-inner">
+                       <img src="image/riaa1.jpeg"
+     alt="Riaaa"
+     class="w-full h-full object-cover pointer-events-none">
+                    <div class="text-center mt-4">
+                        <p class="font-signature text-3xl text-zinc-800 font-bold tracking-wide">One of my favorite pictures ❤️</p>
+                    </div>
+                </div>
+
+                <p class="step-child text-zinc-300 leading-relaxed text-base mb-8 max-w-md mx-auto font-light">
+                    Isn't it funny?<br><br>
+                    A single picture can bring back hundreds of memories.
+                </p>
+
+                <button onclick="goToStep(6)" class="step-child btn-luxury px-10 py-4 rounded-full font-semibold text-lg shadow-lg active:scale-95 duration-150 text-white tracking-wide">
+                    One Honest Question ❤️
+                </button>
+            </div>
+        </div>
+
+        <!-- STEP 6: The Honest Question -->
+        <div class="step w-full hidden" data-step="6">
+            <div class="glass-card rounded-[2.5rem] p-8 md:p-14 text-center relative overflow-hidden">
+                <div class="step-child text-6xl mb-8">💖</div>
+                <h1 class="step-child font-serif text-3xl md:text-4xl tracking-tight mb-4 font-bold text-gradient-luxury">
+                    One Honest Question ❤️
+                </h1>
+                <p class="step-child text-zinc-300 leading-relaxed text-base md:text-lg mb-8 max-w-xl mx-auto font-light">
+                    What do you think makes you so special?
+                </p>
+                
+                <div class="step-child flex flex-col gap-3 max-w-sm mx-auto mb-6">
+                    <button onclick="honestAnswer('everything')" class="glass-card hover:bg-white/5 border border-white/10 py-3.5 px-6 rounded-full font-medium text-zinc-300 hover:text-white transition-all text-left flex justify-between items-center">
+                        <span>My smile 😊</span>
+                        <span class="text-pink-500 opacity-0 transition-opacity">❤️</span>
+                    </button>
+                    <button onclick="honestAnswer('everything')" class="glass-card hover:bg-white/5 border border-white/10 py-3.5 px-6 rounded-full font-medium text-zinc-300 hover:text-white transition-all text-left flex justify-between items-center">
+                        <span>My personality 🌸</span>
+                        <span class="text-pink-500 opacity-0 transition-opacity">❤️</span>
+                    </button>
+                    <button onclick="honestAnswer('everything')" class="glass-card hover:bg-white/5 border border-white/10 py-3.5 px-6 rounded-full font-medium text-zinc-300 hover:text-white transition-all text-left flex justify-between items-center">
+                        <span>My heart ❤️</span>
+                        <span class="text-pink-500 opacity-0 transition-opacity">❤️</span>
+                    </button>
+                    <button onclick="honestAnswer('everything')" class="glass-card hover:bg-white/5 border border-white/10 py-3.5 px-6 rounded-full font-medium text-zinc-300 hover:text-white transition-all text-left flex justify-between items-center">
+                        <span>I don't know 😅</span>
+                        <span class="text-pink-500 opacity-0 transition-opacity">❤️</span>
+                    </button>
+                </div>
+
+                <div id="honest-response" class="h-12 flex items-center justify-center font-serif text-2xl text-pink-300 font-bold"></div>
+
+                <div id="honest-next-btn" class="hidden mt-6">
+                    <button onclick="goToStep(7)" class="btn-luxury px-8 py-3.5 rounded-full font-semibold text-base text-white tracking-wide">
+                        Confession Time ❤️
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 7: Confession Time (Staggered line dynamics) -->
+        <div class="step w-full hidden" data-step="7">
+            <div class="glass-card rounded-[2.5rem] p-8 md:p-14 text-center relative overflow-hidden">
+                <div class="text-5xl mb-6">✨</div>
+                <h1 class="font-serif text-3xl md:text-4xl tracking-tight mb-8 font-bold text-gradient-luxury">
+                    Confession Time ❤️
+                </h1>
+
+                <!-- Letter flow lines -->
+                <div class="space-y-6 text-zinc-300 text-lg md:text-xl font-light mb-10 max-w-lg mx-auto">
+                    <p id="confess-l1" class="opacity-0">I didn't make this website because I know coding.</p>
+                    <p id="confess-l2" class="opacity-0 font-medium text-pink-300">I made it because...</p>
+                    <p id="confess-l3" class="opacity-0 font-serif italic">Sometimes words aren't enough.</p>
+                    <p id="confess-l4" class="opacity-0 text-white font-medium">So I wanted to create something you'd remember.</p>
+                </div>
+
+                <button id="confess-next-btn" onclick="goToStep(8)" class="opacity-0 btn-luxury px-10 py-4 rounded-full font-semibold text-lg shadow-lg active:scale-95 duration-150 text-white tracking-wide">
+                    Unlock Tejas's Heart
+                </button>
+            </div>
+        </div>
+
+        <!-- FINAL STEP: Cinematic Heart Show -->
+        <div class="step w-full hidden" data-step="8">
+            <div class="glass-card rounded-[2.5rem] p-8 md:p-14 text-center relative overflow-hidden max-w-3xl mx-auto border-transparent shadow-[0_0_50px_rgba(244,63,94,0.1)] z-50">
+                
+                <!-- Inner fade block -->
+                <div id="final-scripture" class="space-y-6 text-center leading-relaxed">
+                    <!-- Lines inserted via Javascript timeline -->
+                </div>
+
+                <div id="finale-btn-holder" class="hidden mt-10">
+                    <button onclick="triggerEpicFinale()" class="btn-luxury px-12 py-4 rounded-full font-semibold text-lg shadow-xl active:scale-95 duration-150 text-white tracking-wide">
+                        Open Heart ❤️
+                    </button>
+                </div>
+
+                <!-- Hidden Finale Overlay Centerpiece -->
+                <div id="finale-box" class="hidden flex-col items-center justify-center py-6">
+                    <div id="glowing-center-heart" class="text-8xl mb-8 animate-heartbeat cursor-none filter drop-shadow-[0_0_35px_rgba(244,63,94,1)]">❤️</div>
+                    
+                    <h2 class="font-serif text-3xl md:text-5xl lg:text-6xl text-gradient-luxury font-extrabold tracking-tight mb-4">
+                        You are amazing, Riaaa ❤️
+                    </h2>
+                    
+                    <p class="text-zinc-400 text-lg md:text-xl font-light mb-8 font-signature">
+                        With lots of love,
+                    </p>
+                    
+                    <p class="text-white text-4xl md:text-5xl font-bold font-signature tracking-wide animate-pulse">
+                        Tejas ❤️
+                    </p>
+
+                    <!-- Bonus memory photo gallery reveal -->
+                    <div id="gallery-trigger" class="mt-12 hidden">
+                        <button onclick="revealGallery()" class="glass-card hover:bg-white/10 border border-white/15 px-6 py-3 rounded-full text-sm font-medium tracking-wide text-pink-300">
+                            ✨ Open Our Memory Lane Lane ✨
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Handwritten Signature -->
+                <div id="signature-element" class="opacity-0 mt-8 text-center font-signature text-xl md:text-2xl text-pink-200/80 tracking-wide leading-relaxed">
+                    Made with endless love ❤️<br>
+                    Especially for <span class="text-white font-bold">Riaaa</span><br>
+                    From <span class="text-white font-bold">— Tejas ❤️</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PHOTO GALLERY COMPONENT (Reveals at the absolute end) -->
+        <div id="memory-gallery" class="w-full mt-10 hidden relative z-50">
+            <div class="glass-card rounded-[2.5rem] p-8 md:p-12 text-center">
+                <h2 class="font-serif text-3xl font-bold mb-2 text-gradient-luxury">Our Memory Lane Lane</h2>
+                <p class="text-zinc-400 text-sm font-light mb-8">Some of my absolute favorite captures of you & us. Click to view full frame.</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <!-- Photo 1 -->
+                    <div class="aspect-[3/4] rounded-2xl overflow-hidden glass-card border border-white/10 group relative cursor-none" onclick="openLightbox(0)">
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=600" data-src="images/ria1.jpg" alt="Riaaa" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4 text-pink-300 text-xs tracking-wider">VIEW FULL FRAME</div>
+                    </div>
+                    <!-- Photo 2 -->
+                    <div class="aspect-[3/4] rounded-2xl overflow-hidden glass-card border border-white/10 group relative cursor-none" onclick="openLightbox(1)">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=600" data-src="images/ria2.jpg" alt="Riaaa" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4 text-pink-300 text-xs tracking-wider">VIEW FULL FRAME</div>
+                    </div>
+                    <!-- Photo 3 -->
+                    <div class="aspect-[3/4] rounded-2xl overflow-hidden glass-card border border-white/10 group relative cursor-none" onclick="openLightbox(2)">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=600" data-src="images/ria3.jpg" alt="Riaaa" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4 text-pink-300 text-xs tracking-wider">VIEW FULL FRAME</div>
+                    </div>
+                    <!-- Photo 4 -->
+                    <div class="aspect-[3/4] rounded-2xl overflow-hidden glass-card border border-white/10 group relative cursor-none" onclick="openLightbox(3)">
+                        <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&q=80&w=600" data-src="images/together1.jpg" alt="Together" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4 text-pink-300 text-xs tracking-wider">VIEW FULL FRAME</div>
+                    </div>
+                    <!-- Photo 5 -->
+                    <div class="aspect-[3/4] rounded-2xl overflow-hidden glass-card border border-white/10 group relative cursor-none" onclick="openLightbox(4)">
+                        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&q=80&w=600" data-src="images/together2.jpg" alt="Together" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4 text-pink-300 text-xs tracking-wider">VIEW FULL FRAME</div>
+                    </div>
+                    <!-- Photo 6 -->
+                    <div class="aspect-[3/4] rounded-2xl overflow-hidden glass-card border border-white/10 group relative cursor-none" onclick="openLightbox(5)">
+                        <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=600" data-src="images/together3.jpg" alt="Together" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4 text-pink-300 text-xs tracking-wider">VIEW FULL FRAME</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Fullscreen Lightbox Frame -->
+    <div id="lightbox" class="fixed inset-0 bg-black/95 z-[999999] hidden flex items-center justify-center p-4 cursor-none" onclick="closeLightbox()">
+        <button class="absolute top-6 right-6 text-white text-3xl font-light hover:text-pink-400 select-none cursor-none">&times;</button>
+        <img id="lightbox-img" src="" alt="Full Frame view" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl">
+    </div>
+
+    <!-- Custom Floating Toast Alerts -->
+    <div id="toast-alert" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 glass-card border-pink-500/20 px-8 py-4 rounded-2xl shadow-xl z-[99999] pointer-events-none opacity-0 flex items-center gap-3">
+        <span class="text-xl">❤️</span>
+        <span id="toast-text" class="text-sm font-medium tracking-wide"></span>
+    </div>
+
+    <!-- Interactive JS Core Logic -->
+    <script>
+        let currentStep = 1;
+        let isTransitioning = false;
+
+        // Dynamic Cursor coordinates follow system
+        const cursor = document.getElementById('custom-cursor');
+        let cursorX = 0, cursorY = 0;
+        let currentX = 0, currentY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            cursorX = e.clientX;
+            cursorY = e.clientY;
+        });
+
+        function animateCursor() {
+            // Apply coordinates lag smoothing
+            currentX += (cursorX - currentX) * 0.16;
+            currentY += (cursorY - currentY) * 0.16;
+            cursor.style.left = `${currentX}px`;
+            cursor.style.top = `${currentY}px`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Cursor click particle burst triggers
+        document.addEventListener('click', (e) => {
+            cursor.classList.add('scale-75');
+            setTimeout(() => cursor.classList.remove('scale-75'), 150);
+
+            for (let i = 0; i < 6; i++) {
+                spawnCursorHeart(e.clientX, e.clientY);
+            }
+        });
+
+        function spawnCursorHeart(x, y) {
+            const particle = document.createElement('div');
+            const icons = ['❤️', '💖', '✨', '🌸', '💕'];
+            particle.className = 'cursor-particle';
+            particle.innerText = icons[Math.floor(Math.random() * icons.length)];
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+            document.body.appendChild(particle);
+
+            const pathX = (Math.random() - 0.5) * 130;
+            const pathY = (Math.random() - 0.5) * 130 - 60;
+            const rot = (Math.random() - 0.5) * 90;
+
+            gsap.to(particle, {
+                x: pathX,
+                y: pathY,
+                rotation: rot,
+                opacity: 0,
+                scale: 0.5,
+                duration: 1 + Math.random() * 0.5,
+                ease: "power2.out",
+                onComplete: () => particle.remove()
+            });
+        }
+
+        // Simulating the cinematic load page
+        window.addEventListener('load', () => {
+            gsap.to('#loader-progress', {
+                width: '100%',
+                duration: 2.5,
+                ease: 'power2.inOut',
+                onComplete: () => {
+                    // Exploding loader heart animation
+                    gsap.to('#loader-heart', {
+                        scale: 3,
+                        rotation: 360,
+                        opacity: 0,
+                        duration: 0.8,
+                        ease: 'power3.inOut'
+                    });
+                    gsap.to('#loader', {
+                        opacity: 0,
+                        duration: 0.8,
+                        ease: 'power2.out',
+                        onComplete: () => {
+                            const loader = document.getElementById('loader');
+                            if(loader) loader.remove();
+                            
+                            // Load first step beautifully
+                            gsap.fromTo('.step[data-step="1"]', 
+                                { opacity: 0, y: 50, scale: 0.94 }, 
+                                { opacity: 1, y: 0, scale: 1, duration: 1.2, ease: 'power3.out' }
+                            );
+                            gsap.fromTo('.step[data-step="1"] .step-child',
+                                { opacity: 0, y: 20 },
+                                { opacity: 1, y: 0, stagger: 0.15, duration: 0.8, ease: 'power2.out', delay: 0.3 }
+                            );
+                        }
+                    });
+                }
+            });
+        });
+
+        // Background Audio controls (Bypasses autoplay blocker seamlessly)
+        const audio = document.getElementById('bg-audio');
+        const playIcon = document.getElementById('play-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+        const equalizer = document.getElementById('equalizer');
+
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    playIcon.classList.add('hidden');
+                    pauseIcon.classList.remove('hidden');
+                    equalizer.classList.remove('hidden');
+                }).catch(err => console.log("System block handled", err));
+            } else {
+                audio.pause();
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+                equalizer.classList.add('hidden');
+            }
+        }
+
+        function acceptPromise() {
+            // Initiate background score safely on interactive confirmation click
+            if (audio.paused) {
+                toggleAudio();
+            }
+            goToStep(2);
+        }
+
+        // Global Step Timeline router transitions
+        function goToStep(nextStep) {
+            if (isTransitioning) return;
+            isTransitioning = true;
+
+            const currentElement = document.querySelector(`.step[data-step="${currentStep}"]`);
+            const nextElement = document.querySelector(`.step[data-step="${nextStep}"]`);
+
+            // Sync top header navigation bar
+            gsap.to('#progress-bar', {
+                width: `${(nextStep / 8) * 100}%`,
+                duration: 0.8,
+                ease: 'power3.out'
+            });
+
+            const currentChildren = currentElement.querySelectorAll('.step-child');
+            const nextChildren = nextElement.querySelectorAll('.step-child');
+
+            const tl = gsap.timeline();
+
+            if (currentChildren.length > 0) {
+                tl.to(currentChildren, {
+                    opacity: 0,
+                    y: -20,
+                    stagger: 0.08,
+                    duration: 0.4,
+                    ease: "power2.in"
+                });
+            }
+
+            tl.to(currentElement, {
+                opacity: 0,
+                y: -35,
+                scale: 0.95,
+                duration: 0.5,
+                ease: 'power2.in',
+                onComplete: () => {
+                    currentElement.classList.add('hidden');
+                    nextElement.classList.remove('hidden');
+                    gsap.set(nextElement, { opacity: 0, y: 35, scale: 0.95 });
+                    if (nextChildren.length > 0) {
+                        gsap.set(nextChildren, { opacity: 0, y: 20 });
+                    }
+                }
+            }, "-=0.2");
+
+            tl.to(nextElement, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.65,
+                ease: 'power3.out'
+            });
+
+            if (nextChildren.length > 0) {
+                tl.to(nextChildren, {
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.12,
+                    duration: 0.6,
+                    ease: "power2.out"
+                }, "-=0.3");
+            }
+
+            tl.vars.onComplete = () => {
+                currentStep = nextStep;
+                isTransitioning = false;
+
+                // Handle custom events on special pages
+                if (nextStep === 4) {
+                    // Stagger Bento items entry
+                    gsap.fromTo('.step[data-step="4"] .grid > div', 
+                        { opacity: 0, scale: 0.9 },
+                        { opacity: 1, scale: 1, stagger: 0.1, duration: 0.6, ease: "power2.out" }
+                    );
+                } else if (nextStep === 5) {
+                    initPolaroidInteraction();
+                } else if (nextStep === 7) {
+                    revealConfessions();
+                } else if (nextStep === 8) {
+                    startConfessionScroll();
+                }
+            };
+        }
+
+        // STEP 2: Playful game state handler
+        function gameAnswer(type) {
+            const responseDiv = document.getElementById('game-response');
+            const nextBtn = document.getElementById('game-next-btn');
+
+            if (type === 'wrong1') {
+                responseDiv.innerText = "Hmm... Good guess... But also a terrible guess 😂";
+                gsap.fromTo(responseDiv, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4 });
+            } else if (type === 'wrong2') {
+                responseDiv.innerText = "Well... Secret until now 😏";
+                gsap.fromTo(responseDiv, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4 });
+            } else if (type === 'right') {
+                responseDiv.innerText = "Correct. You know me too well ❤️";
+                gsap.fromTo(responseDiv, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4 });
+                nextBtn.classList.remove('hidden');
+                gsap.fromTo(nextBtn, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, delay: 0.2 });
+            }
+        }
+
+        // STEP 3: Multi-Question system handler
+        let activeSubQ = 1;
+        function answerSubQ(questionNum, choice) {
+            const feedbackDiv = document.getElementById('questions-feedback');
+            const actionBtnHolder = document.getElementById('questions-next-btn');
+            const nextActionBtn = document.getElementById('q-next-action');
+
+            if (questionNum === 1) {
+                if (choice === 'right') {
+                    feedbackDiv.innerText = "Finally... Someone who knows the truth ❤️";
+                } else {
+                    feedbackDiv.innerText = "Liar 😂 But thank you.";
+                }
+                nextActionBtn.innerText = "Next Question";
+                nextActionBtn.onclick = () => loadSubQ(2);
+            } else if (questionNum === 2) {
+                if (choice === 'tejas') {
+                    feedbackDiv.innerText = "Hey! That's... actually very accurate. 😅";
+                } else {
+                    feedbackDiv.innerText = "Aha! Caught you. Get ready for snacks! 🍟";
+                }
+                nextActionBtn.innerText = "Last Question";
+                nextActionBtn.onclick = () => loadSubQ(3);
+            } else if (questionNum === 3) {
+                feedbackDiv.innerText = "Let's agree... Both of us 😂";
+                nextActionBtn.innerText = "Continue ❤️";
+                nextActionBtn.onclick = () => goToStep(4);
+            }
+
+            gsap.fromTo(feedbackDiv, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4 });
+            actionBtnHolder.classList.remove('hidden');
+            gsap.fromTo(actionBtnHolder, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4 });
+        }
+
+        function loadSubQ(num) {
+            const curSlide = document.getElementById(`sub-q${activeSubQ}`);
+            const nextSlide = document.getElementById(`sub-q${num}`);
+            const feedbackDiv = document.getElementById('questions-feedback');
+            const actionBtnHolder = document.getElementById('questions-next-btn');
+
+            gsap.timeline()
+                .to(curSlide, { opacity: 0, y: -15, duration: 0.3, onComplete: () => {
+                    curSlide.classList.add('hidden');
+                    nextSlide.classList.remove('hidden');
+                    gsap.set(nextSlide, { opacity: 0, y: 15 });
+                }})
+                .to(nextSlide, { opacity: 1, y: 0, duration: 0.4 })
+                .to([feedbackDiv, actionBtnHolder], { opacity: 0, duration: 0.2, onComplete: () => {
+                    feedbackDiv.innerText = "";
+                    actionBtnHolder.classList.add('hidden');
+                    gsap.set([feedbackDiv, actionBtnHolder], { opacity: 1 });
+                }}, "-=0.4");
+
+            activeSubQ = num;
+        }
+
+        // STEP 5: Cursor tracking 3D Polaroid parallax tilts
+        function initPolaroidInteraction() {
+            const polaroid = document.getElementById('polaroid');
+            if(!polaroid) return;
+
+            polaroid.addEventListener('mousemove', (e) => {
+                const rect = polaroid.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                gsap.to(polaroid, {
+                    rotateY: x * 0.12,
+                    rotateX: -y * 0.12,
+                    transformPerspective: 800,
+                    ease: "power1.out",
+                    overwrite: "auto"
+                });
+            });
+
+            polaroid.addEventListener('mouseleave', () => {
+                gsap.to(polaroid, {
+                    rotateY: 1,
+                    rotateX: 0,
+                    ease: "power2.out",
+                    overwrite: "auto"
+                });
+            });
+        }
+
+        // STEP 6: Honest Question answers logic
+        function honestAnswer(choice) {
+            const feedback = document.getElementById('honest-response');
+            const nextBtn = document.getElementById('honest-next-btn');
+            const items = document.querySelectorAll('#step-6-btn');
+
+            feedback.innerText = "The real answer? Everything.";
+            gsap.fromTo(feedback, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5 });
+            
+            // Show check-icon ticks beautifully
+            document.querySelectorAll('#step-6-btn span:last-child').forEach(el => el.classList.remove('opacity-0'));
+
+            nextBtn.classList.remove('hidden');
+            gsap.fromTo(nextBtn, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, delay: 0.3 });
+        }
+
+        // STEP 7: Confession staggered sequence
+        function revealConfessions() {
+            const timeline = gsap.timeline();
+            timeline
+                .to('#confess-l1', { opacity: 1, duration: 1, delay: 0.5 })
+                .to('#confess-l2', { opacity: 1, duration: 1, delay: 0.8 })
+                .to('#confess-l3', { opacity: 1, duration: 1, delay: 0.8 })
+                .to('#confess-l4', { opacity: 1, duration: 1, delay: 0.8 })
+                .to('#confess-next-btn', { opacity: 1, y: 0, duration: 0.8, delay: 0.5 });
+        }
+
+        // STEP 8: Romantic scroll timeline details
+        const finalScriptLines = [
+            "Riaaa...",
+            "Thank you...",
+            "For making ordinary days feel special.",
+            "For every smile.",
+            "Every laugh.",
+            "Every conversation.",
+            "Every little memory.",
+            "I don't know what the future holds...",
+            "But I do know...",
+            "Meeting you has made my life happier.",
+            "And if this website managed to make you smile...",
+            "Then it was worth every second."
+        ];
+
+        function startConfessionScroll() {
+            const container = document.getElementById('final-scripture');
+            
+            // Dim background for emotional emphasis
+            document.getElementById('finale-dimmer').classList.remove('opacity-0');
+            // Slow down Three.js floating hearts velocities to zero
+            isSlowingDown = true;
+
+            // Generate elements dynamically
+            finalScriptLines.forEach((text, i) => {
+                const p = document.createElement('p');
+                p.className = "final-line opacity-0 text-zinc-300 text-lg md:text-xl font-light font-serif tracking-wide leading-relaxed";
+                p.innerText = text;
+                // Style highlights
+                if(i === 0) p.className = "final-line opacity-0 text-3xl md:text-4xl text-gradient-luxury font-bold font-serif mb-6";
+                if(i === 2 || i === 9) p.className = "final-line opacity-0 text-pink-300 font-medium text-lg md:text-xl";
+                container.appendChild(p);
+            });
+
+            const lines = document.querySelectorAll('.final-line');
+            const btnHolder = document.getElementById('finale-btn-holder');
+
+            gsap.timeline()
+                .to(lines, {
+                    opacity: 1,
+                    y: -5,
+                    stagger: 2.2, // Stagger delays to read comfortably
+                    duration: 1.5,
+                    ease: "power2.out"
+                })
+                .to(btnHolder, {
+                    display: 'block',
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    ease: "power3.out"
+                });
+        }
+
+        // TRIGGER GRAND FINALE SHOWCASE
+        function triggerEpicFinale() {
+            const timelineBlock = document.getElementById('final-scripture');
+            const actionBtn = document.getElementById('finale-btn-holder');
+            const finaleBox = document.getElementById('finale-box');
+            const signature = document.getElementById('signature-element');
+
+            gsap.timeline()
+                .to([timelineBlock, actionBtn], {
+                    opacity: 0,
+                    y: -20,
+                    duration: 0.8,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        timelineBlock.classList.add('hidden');
+                        actionBtn.classList.add('hidden');
+                        
+                        finaleBox.classList.remove('hidden');
+                        gsap.set(finaleBox, { opacity: 0, scale: 0.9 });
+                    }
+                })
+                .to(finaleBox, {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1.2,
+                    ease: "power3.out"
+                })
+                .to(signature, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: "power2.out"
+                }, "-=0.4")
+                .to('#gallery-trigger', {
+                    display: 'block',
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: 0.5
+                });
+
+            // Start massive confetti
+            triggerFinaleConfetti();
+        }
+
+        // Massive continuous canvas confetti
+        function triggerFinaleConfetti() {
+            const end = Date.now() + 6 * 1000;
+            const colors = ['#f43f5e', '#ec4899', '#8b5cf6', '#ffd1dc'];
+
+            (function frame() {
+                confetti({
+                    particleCount: 3,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors
+                });
+                confetti({
+                    particleCount: 3,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+
+        // Unveil Photo gallery bonus section
+        function revealGallery() {
+            const gallery = document.getElementById('memory-gallery');
+            gallery.classList.remove('hidden');
+            gsap.fromTo(gallery, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" });
+            
+            // Auto-scroll screen down comfortably to gallery viewport
+            setTimeout(() => {
+                gallery.scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+        }
+
+        // Easter eggs details and interactive alerts
+        const eggMessages = {
+            egg1: "You're prettier than you think. ❤️",
+            egg2: "I hope today made you smile. 💖",
+            egg3: "Thank you for being you. ✨"
+        };
+
+        function revealEgg(eggKey) {
+            const toast = document.getElementById('toast-alert');
+            const toastText = document.getElementById('toast-text');
+            
+            toastText.innerText = eggMessages[eggKey];
+            
+            gsap.timeline()
+                .to(toast, { opacity: 1, y: -20, duration: 0.4, ease: "power2.out" })
+                .to(toast, { opacity: 0, y: 0, duration: 0.4, ease: "power2.in", delay: 3.0 });
+        }
+
+        // Photo Gallery Lightbox mechanics
+        // Falling back placeholder arrays matching prompt requested files
+        const galleryUrls = [
+            "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=800", // Fallback images mapped for prompt
+            "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=800",
+            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=800",
+            "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&q=80&w=800",
+            "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&q=80&w=800",
+            "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=800"
+        ];
+
+        function openLightbox(index) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            // Set source image url
+            lightboxImg.src = galleryUrls[index];
+            lightbox.classList.remove('hidden');
+            gsap.fromTo(lightbox, { opacity: 0 }, { opacity: 1, duration: 0.4 });
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            gsap.to(lightbox, { opacity: 0, duration: 0.3, onComplete: () => lightbox.classList.add('hidden') });
+        }
+
+        // Three.js Scene Configuration (Glossy metallic pink hearts)
+        let scene, camera, renderer, hearts = [];
+        let viewX = 0, viewY = 0;
+        let isSlowingDown = false;
+
+        document.addEventListener('mousemove', (e) => {
+            viewX = (e.clientX - window.innerWidth / 2) * 0.001;
+            viewY = (e.clientY - window.innerHeight / 2) * 0.001;
+        });
+
+        function initThreeJS() {
+            const canvasContainer = document.getElementById('canvas-container');
+            if(!canvasContainer) return;
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 24;
+
+            renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            canvasContainer.appendChild(renderer.domElement);
+
+            // Studio light layers
+            const ambient = new THREE.AmbientLight(0xffffff, 0.7);
+            scene.add(ambient);
+
+            const direct = new THREE.DirectionalLight(0xffffff, 0.9);
+            direct.position.set(12, 18, 12);
+            scene.add(direct);
+
+            // Extrude beautiful geometry
+            const heartShape = new THREE.Shape();
+            heartShape.moveTo( 25, 25 );
+            heartShape.bezierCurveTo( 25, 25, 20, 0, 0, 0 );
+            heartShape.bezierCurveTo( -30, 0, -30, 35,-30, 35 );
+            heartShape.bezierCurveTo( -30, 55, -10, 77, 25, 95 );
+            heartShape.bezierCurveTo( 60, 77, 80, 55, 80, 35 );
+            heartShape.bezierCurveTo( 80, 35, 80, 0, 50, 0 );
+            heartShape.bezierCurveTo( 35, 0, 25, 25, 25, 25 );
+
+            const extrudeSettings = { depth: 3.2, bevelEnabled: true, bevelSegments: 3, steps: 1, bevelSize: 1.4, bevelThickness: 1.4 };
+            const geometry = new THREE.ExtrudeGeometry(heartShape, extrudeSettings);
+            geometry.center();
+            geometry.scale(0.042, 0.042, 0.042);
+
+            const colors = [0xff4b72, 0xff758c, 0xec4899, 0xf43f5e, 0xdb2777];
+            const sizeCount = 25;
+
+            for (let i = 0; i < sizeCount; i++) {
+                // High-reflective wet look physical components
+                const material = new THREE.MeshPhysicalMaterial({
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    metalness: 0.9,
+                    roughness: 0.18,
+                    clearcoat: 1.0,
+                    clearcoatRoughness: 0.08,
+                    side: THREE.DoubleSide
+                });
+
+                const mesh = new THREE.Mesh(geometry, material);
+                mesh.position.set(
+                    (Math.random() - 0.5) * 38,
+                    (Math.random() - 0.5) * 38 - 10,
+                    (Math.random() - 0.5) * 16
+                );
+                mesh.rotation.set(
+                    Math.random() * Math.PI,
+                    Math.random() * Math.PI,
+                    0
+                );
+
+                mesh.userData = {
+                    speedY: 0.035 + Math.random() * 0.045,
+                    rotX: (Math.random() - 0.5) * 0.015,
+                    rotY: (Math.random() - 0.5) * 0.015,
+                    ampX: Math.random() * 1.6,
+                    freqX: 0.01 + Math.random() * 0.02,
+                    startX: mesh.position.x
+                };
+
+                scene.add(mesh);
+                hearts.push(mesh);
+            }
+
+            animateThreeJS();
+        }
+
+        function animateThreeJS() {
+            requestAnimationFrame(animateThreeJS);
+
+            // Responsive camera view tilt follow
+            camera.position.x += (viewX * 5 - camera.position.x) * 0.05;
+            camera.position.y += (-viewY * 5 - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+
+            hearts.forEach(mesh => {
+                if (isSlowingDown) {
+                    // Slow velocities to zero on finale
+                    mesh.userData.speedY *= 0.95;
+                    mesh.userData.rotX *= 0.95;
+                    mesh.userData.rotY *= 0.95;
+                    mesh.material.opacity = Math.max(mesh.material.opacity - 0.01, 0.2);
+                }
+
+                mesh.position.y += mesh.userData.speedY;
+                mesh.rotation.x += mesh.userData.rotX;
+                mesh.rotation.y += mesh.userData.rotY;
+
+                // Drift waves
+                mesh.position.x = mesh.userData.startX + Math.sin(mesh.position.y * mesh.userData.freqX) * mesh.userData.ampX;
+
+                // Infinite loop cycles
+                if (mesh.position.y > 22 && !isSlowingDown) {
+                    mesh.position.y = -22;
+                    mesh.position.x = (Math.random() - 0.5) * 38;
+                    mesh.userData.startX = mesh.position.x;
+                }
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        // Window resize events handler
+        window.addEventListener('resize', () => {
+            if(!camera || !renderer) return;
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Initialize WebGL Graphics
+        initThreeJS();
+    </script>
+</body>
+</html>
