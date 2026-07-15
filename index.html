@@ -546,8 +546,12 @@
                     <p id="confess-l4" class="opacity-0 text-white font-medium">So I wanted to create something you'd remember.</p>
                 </div>
 
-                <button id="confess-next-btn" onclick="goToStep(8)" class="opacity-0 btn-luxury px-10 py-4 rounded-full font-semibold text-lg shadow-lg active:scale-95 duration-150 text-white tracking-wide">
-                    Unlock Tejas's Heart
+                const next = document.querySelector(`[data-step="${step}"]`);
+if (next) {
+    next.classList.remove("hidden");
+    next.style.display = "block";
+    next.style.opacity = "1";
+}
                 </button>
             </div>
         </div>
