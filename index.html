@@ -973,11 +973,11 @@
         }
 
         // STEP 6: Honest Question answers logic
-        function honestAnswer() {
+       function honestAnswer() {
     const feedback = document.getElementById("honest-response");
     const nextBtn = document.getElementById("honest-next-btn");
 
-    feedback.innerHTML = "The real answer? <span style='color:#ec4899'>Everything ❤️</span>";
+    feedback.innerHTML = "The real answer is... Everything ❤️";
 
     gsap.fromTo(
         feedback,
@@ -993,7 +993,6 @@
         { opacity: 1, y: 0, duration: 0.5 }
     );
 }
-
         // STEP 8: Romantic scroll timeline details
         const finalScriptLines = [
             "Riaaa...",
