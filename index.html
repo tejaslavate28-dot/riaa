@@ -973,31 +973,26 @@
         }
 
         // STEP 6: Honest Question answers logic
-        function honestAnswer(choice) {
-            const feedback = document.getElementById('honest-response');
-            const nextBtn = document.getElementById('honest-next-btn');
-            const items = document.querySelectorAll('#step-6-btn');
+        function honestAnswer() {
+    const feedback = document.getElementById("honest-response");
+    const nextBtn = document.getElementById("honest-next-btn");
 
-            feedback.innerText = "The real answer? Everything.";
-            gsap.fromTo(feedback, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5 });
-            
-            // Show check-icon ticks beautifully
-            document.querySelectorAll('#step-6-btn span:last-child').forEach(el => el.classList.remove('opacity-0'));
+    feedback.innerHTML = "The real answer? <span style='color:#ec4899'>Everything ❤️</span>";
 
-            nextBtn.classList.remove('hidden');
-            gsap.fromTo(nextBtn, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, delay: 0.3 });
-        }
+    gsap.fromTo(
+        feedback,
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: 0.5 }
+    );
 
-        // STEP 7: Confession staggered sequence
-        function revealConfessions() {
-            const timeline = gsap.timeline();
-            timeline
-                .to('#confess-l1', { opacity: 1, duration: 1, delay: 0.5 })
-                .to('#confess-l2', { opacity: 1, duration: 1, delay: 0.8 })
-                .to('#confess-l3', { opacity: 1, duration: 1, delay: 0.8 })
-                .to('#confess-l4', { opacity: 1, duration: 1, delay: 0.8 })
-                .to('#confess-next-btn', { opacity: 1, y: 0, duration: 0.8, delay: 0.5 });
-        }
+    nextBtn.classList.remove("hidden");
+
+    gsap.fromTo(
+        nextBtn,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.5 }
+    );
+}
 
         // STEP 8: Romantic scroll timeline details
         const finalScriptLines = [
