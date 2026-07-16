@@ -788,19 +788,21 @@ if (next) {
         }
 
         // Global Step Timeline router transitions
-        function goToStep(nextStep) {
-            if (isTransitioning) return;
-            isTransitioning = true;
+    function goToStep(step) {
 
-            const currentElement = document.querySelector(`.step[data-step="${currentStep}"]`);
-            const nextElement = document.querySelector(`.step[data-step="${nextStep}"]`);
+    document.querySelectorAll(".step").forEach(s=>{
+        s.classList.add("hidden");
+    });
 
-            // Sync top header navigation bar
-            gsap.to('#progress-bar', {
-                width: `${(nextStep / 8) * 100}%`,
-                duration: 0.8,
-                ease: 'power3.out'
-            });
+    const current=document.querySelector(`[data-step="${step}"]`);
+
+    if(current){
+        current.classList.remove("hidden");
+        current.style.display="block";
+        current.style.opacity="1";
+    }
+
+}
 
             const currentChildren = currentElement.querySelectorAll('.step-child');
             const nextChildren = nextElement.querySelectorAll('.step-child');
